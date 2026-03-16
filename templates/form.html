@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fill Form</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #121c3b, #060b1a 70%);
+      color: #ffffff;
+    }
+
+    /* GLASS CONTAINER */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0;              /* remove inner box spacing */
+  background: none;        /* removes the box */
+  box-shadow: none;        /* removes glow */
+  border-radius: 0;
+}
+
+    h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+      letter-spacing: 1px;
+    }
+
+    .row {
+      display: flex;
+      gap: 50px;
+    }
+
+    .col-left {
+      width: 55%;
+    }
+
+    .col-right {
+      width: 45%;
+      color: #cfd6ff;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* INPUT CARDS */
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: #bfc7ff;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 22px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      background: #eef2ff;
+      color: #000;
+    }
+
+    /* BUTTON */
+    button {
+      padding: 12px 36px;
+      background: linear-gradient(135deg, #6a6cff, #4f6cff);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+
+    .col-right h4 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .row {
+        flex-direction: column;
+      }
+
+      .col-left,
+      .col-right {
+        width: 100%;
+      }
+
+      .container {
+        padding: 40px 24px;
+        margin: 30px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<form method="POST" action="/contact">
+  <div class="container">
+    <h2>FILL THE FORM TO CONTINUE</h2>
+
+    <div class="row">
+
+      <!-- LEFT FORM -->
+      <div class="col-left">
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Age</label>
+        <input type="number" name="age" required>
+
+        <label>Country</label>
+        <input type="text" name="country" required>
+
+        <button type="submit">Send</button>
+      </div>
+
+      <!-- RIGHT INFO -->
+      <div class="col-right">
+        <h4>Why you should fill this form?</h4>
+        <p>
+          The data you will provide will be used for training the model
+          for more accurate predictions. Once trained, we will discard
+          your provided details safely.
+        </p>
+
+        <p>Thank You!</p>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+</body>
+</html>
+

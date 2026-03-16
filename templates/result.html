@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #121c3b, #060b1a 70%);
+      color: #ffffff;
+    }
+
+    /* GLASS CONTAINER (same as test.html) */
+   .win2 {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 60px;
+    background: transparent;   /* removes the box */
+    backdrop-filter: none;     /* removes glass effect */
+    border-radius: 0;
+    box-shadow: none;          /* removes shadow */
+   }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    /* RESULT CARD */
+    .result-card {
+      background: linear-gradient(145deg, #0f1833, #0a1126);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.05),
+        0 20px 40px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+      font-size: 20px;
+    }
+
+    .result-card span {
+      display: block;
+      margin-top: 10px;
+      font-size: 26px;
+      font-weight: 600;
+      color: #00e5ff;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-left: 4px solid #6a6cff;
+      padding-left: 12px;
+      color: #ffffff;
+    }
+
+    /* SUGGESTION CARD */
+    .suggestion {
+      background: linear-gradient(145deg, #0f1833, #0a1126);
+      padding: 18px 22px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      color: #cfd6ff;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.05),
+        0 15px 30px rgba(0,0,0,0.45);
+    }
+
+    /* NOTE */
+    .note {
+      margin-top: 30px;
+      padding: 18px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      font-size: 14px;
+      color: #bfc7ff;
+    }
+
+    /* BUTTON */
+    .btn-home {
+      display: block;
+      width: fit-content;
+      margin: 40px auto 0;
+      padding: 14px 40px;
+      background: linear-gradient(135deg, #6a6cff, #4f6cff);
+      color: #ffffff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 768px) {
+      .win2 {
+        padding: 40px 24px;
+        margin: 30px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="win2">
+
+    <h1>YOUR RESULT</h1>
+
+    <!-- Prediction -->
+    <div class="result-card">
+      Prediction Result
+      <span>{{ result }}</span>
+    </div>
+<!-- Suggestions -->
+<div class="section-title">Helpful Suggestions</div>
+
+{% if result == "Minimal Depression" %}
+  <div class="suggestion">Maintain your current routine and healthy habits.</div>
+  <div class="suggestion">Get adequate sleep and stay physically active.</div>
+  <div class="suggestion">Continue spending time with friends and family.</div>
+  <div class="suggestion">Practice mindfulness or short daily meditation.</div>
+  <div class="suggestion">Engage in hobbies that bring you joy.</div>
+  <div class="suggestion">Keep tracking your mood regularly.</div>
+
+{% elif result == "Mild Depression" %}
+  <div class="suggestion">Try to establish a consistent daily routine.</div>
+  <div class="suggestion">Talk openly with someone you trust about how you feel.</div>
+  <div class="suggestion">Spend time outdoors or do light exercise.</div>
+  <div class="suggestion">Limit screen time, especially before sleep.</div>
+  <div class="suggestion">Write down your thoughts to identify stress triggers.</div>
+  <div class="suggestion">Practice relaxation techniques like deep breathing.</div>
+
+{% elif result == "Moderate Depression" %}
+  <div class="suggestion">Break tasks into small, manageable steps.</div>
+  <div class="suggestion">Try maintaining a regular sleep and meal schedule.</div>
+  <div class="suggestion">Stay connected with close friends or family members.</div>
+  <div class="suggestion">Reduce overwhelming responsibilities where possible.</div>
+  <div class="suggestion">Engage in calming activities like music or journaling.</div>
+  <div class="suggestion">Consider seeking guidance from a counselor or mentor.</div>
+
+{% elif result == "Severe Depression" %}
+  <div class="suggestion">Reach out to a trusted person and share how you feel.</div>
+  <div class="suggestion">Avoid isolation and try to stay connected.</div>
+  <div class="suggestion">Focus on basic self-care like eating and resting properly.</div>
+  <div class="suggestion">Reduce stress by limiting major decisions temporarily.</div>
+  <div class="suggestion">Seek professional support from a mental health expert.</div>
+  <div class="suggestion">Remember that help and improvement are possible.</div>
+{% endif %}
+
+
+    <!-- Note -->
+    <div class="note">
+      This result is for informational purposes only and does not replace professional guidance.
+      If you feel consistently low or stressed, consider talking to a trusted person or a qualified professional.
+    </div>
+
+    <a href="/dashboard" class="btn-home">Go Back</a>
+
+  </div>
+
+</body>
+</html>

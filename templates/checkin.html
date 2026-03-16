@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Daily Stress Check-in</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .checkin-wrapper {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .checkin-card {
+      background: linear-gradient(180deg, #0b1220, #020617);
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      text-align: center;
+      color: #c7d2fe;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    textarea {
+      width: 100%;
+      height: 220px;
+      margin-top: 35px;
+      padding: 18px 20px;
+      font-size: 16px;
+      font-family: inherit;
+      border-radius: 14px;
+      border: none;
+      outline: none;
+      resize: none;
+      background: #020617;
+      color: #ffffff;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    textarea:focus {
+      box-shadow: inset 0 0 0 1px #6366f1;
+    }
+
+    .button-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+    }
+
+    button {
+      padding: 14px 46px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #ffffff;
+      border: none;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.35);
+    }
+
+    @media (max-width: 600px) {
+      .checkin-card {
+        padding: 35px 25px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="checkin-wrapper">
+    <div class="checkin-card">
+      <h1>Daily Stress Check‑In</h1>
+      <p class="subtitle">
+        Take a moment to reflect and write freely. Your interaction patterns help us
+        understand stress levels in a subtle, non‑intrusive way.
+      </p>
+
+      <form method="POST" action="/checkin" id="checkinForm">
+        <textarea id="thoughts" name="thoughts" placeholder="Start typing..."></textarea>
+
+        <!-- Hidden fields (AUTO filled by JS) -->
+        <input type="hidden" name="session_duration" id="session_duration">
+        <input type="hidden" name="typing_delay" id="typing_delay">
+        <input type="hidden" name="click_rate" id="click_rate">
+        <input type="hidden" name="checkin_score" id="checkin_score">
+
+        <div class="button-wrap">
+          <button type="submit">Submit Check‑In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ⚠️ SCRIPT IS UNCHANGED -->
+  <script>
+    let startTime = Date.now();
+    let lastKeyTime = null;
+    let delays = [];
+    let clicks = 0;
+
+    document.addEventListener("click", () => clicks++);
+
+    document.getElementById("thoughts").addEventListener("keydown", () => {
+      let now = Date.now();
+      if (lastKeyTime) {
+        delays.push(now - lastKeyTime);
+      }
+      lastKeyTime = now;
+    });
+
+    document.getElementById("checkinForm").addEventListener("submit", () => {
+      let sessionDuration = (Date.now() - startTime) / 1000;
+      let avgDelay = delays.length
+        ? delays.reduce((a, b) => a + b) / delays.length
+        : 0;
+
+      let clickRate = clicks / sessionDuration;
+
+      let checkinScore = Math.min(
+        10,
+        Math.round((avgDelay / 300) + (clickRate * 2))
+      );
+
+      document.getElementById("session_duration").value = sessionDuration;
+      document.getElementById("typing_delay").value = avgDelay;
+      document.getElementById("click_rate").value = clickRate;
+      document.getElementById("checkin_score").value = checkinScore;
+    });
+  </script>
+</body>
+</html>
+
+

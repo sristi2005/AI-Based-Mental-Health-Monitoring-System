@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | Mental Health</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0b1220;
+      color: #fff;
+    }
+
+    .dashboard {
+      min-height: 100vh;
+      padding: 60px 40px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #bfc7ff;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      line-height: 1.6;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #111a2e, #0c1324);
+      width: 320px;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    .card p {
+      color: #cfd6ff;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #4f6cff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #3c55d9;
+    }
+
+    /* ================= GRAPH STYLING ================= */
+
+    .chart-section {
+      margin-top: 80px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .chart-card {
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(145deg, #111a2e, #0c1324);
+      padding: 30px 30px 40px;
+      border-radius: 18px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+    }
+
+    .chart-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #ffffff;
+    }
+
+    canvas {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <h1>Your Mental Health Dashboard</h1>
+    <p class="subtitle">
+      This dashboard helps you understand and track your mental well‑being.
+      You can take a depression assessment or do a quick daily check‑in to
+      reflect on how you are feeling today.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h2>Depression Test</h2>
+        <p>
+          Take a scientifically designed questionnaire to understand your
+          current mental health status and receive helpful insights.
+        </p>
+        <a href="{{ url_for('test') }}" class="btn">Take Test</a>
+      </div>
+
+      <div class="card">
+        <h2>Daily Stress Check‑In</h2>
+        <p>
+          A quick check‑in to track your mood and emotions. Small reflections
+          can make a big difference over time.
+        </p>
+        <a href="{{ url_for('checkin') }}" class="btn">Check In</a>
+      </div>
+      <div class="card">
+    <h2>Anxiety Assessment</h2>
+    <p>
+    A short check‑in to understand your anxiety levels and daily worries.
+    Tracking your feelings can help you manage anxiety better over time.
+    </p>
+    <a href="{{ url_for('anxiety_test') }}" class="btn">Take Assessment</a>
+    </div>
+    </div>
+  
+
+    <!-- ================= WEEKLY GRAPH ================= -->
+
+    <div class="chart-section">
+      <div class="chart-card">
+        <h2>Weekly Stress Overview</h2>
+        <canvas id="stressChart" height="120"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    fetch("/weekly-data")
+      .then(res => res.json())
+      .then(data => {
+        const ctx = document.getElementById("stressChart").getContext("2d");
+
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: data.labels,
+            datasets: [{
+              label: "Average Stress Level",
+              data: data.values,
+              borderColor: "#4f6cff",
+              backgroundColor: "rgba(79,108,255,0.2)",
+              tension: 0.4,
+              fill: true,
+              pointRadius: 6,
+              pointBackgroundColor: "#ffffff",
+              pointBorderColor: "#4f6cff"
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                labels: { color: "#ffffff" }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { color: "#cfd6ff" },
+                grid: { color: "rgba(255,255,255,0.08)" }
+              },
+              x: {
+                ticks: { color: "#cfd6ff" },
+                grid: { display: false }
+              }
+            }
+          }
+        });
+      });
+  </script>
+
+</body>
+</html>
+

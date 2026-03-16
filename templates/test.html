@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Form</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #121c3b, #060b1a 70%);
+      color: #ffffff;
+    }
+
+    /* GLASS CONTAINER */
+   .win2 {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 60px;
+    background: transparent;   /* removes the box */
+    backdrop-filter: none;     /* removes glass effect */
+    border-radius: 0;
+    box-shadow: none;          /* removes shadow */
+   }
+
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .subheading {
+      text-align: center;
+      margin-bottom: 50px;
+      color: #bfc7ff;
+      font-size: 16px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .col-6 {
+      width: 48%;
+    }
+
+    /* QUESTION CARD */
+    .card {
+      background: linear-gradient(145deg, #0f1833, #0a1126);
+      padding: 22px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05),
+                  0 20px 40px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    }
+
+    .card p {
+      margin-bottom: 14px;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    /* RADIO OPTIONS */
+    .card-item label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0;
+      cursor: pointer;
+      color: #cfd6ff;
+      font-size: 14px;
+    }
+
+    .card-item input[type="radio"] {
+      accent-color: #6a6cff;
+      transform: scale(1.1);
+    }
+
+    /* SUBMIT BUTTON */
+    .button {
+      display: block;
+      margin: 50px auto 0;
+      padding: 14px 46px;
+      background: linear-gradient(135deg, #6a6cff, #4f6cff);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    @media (max-width: 900px) {
+      .col-6 {
+        width: 100%;
+      }
+      .win2 {
+        padding: 40px 24px;
+        margin: 30px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<form action="{{ url_for('test') }}" method="POST">
+
+  <div class="win2">
+    <h1>QUESTION TIME</h1>
+    <p class="subheading">Fill all the answers and click submit to see the result</p>
+
+    <div class="row">
+
+      <!-- LEFT COLUMN -->
+      <div class="col-6">
+
+        <div class="card">
+          <p>I have little or no interest in doing things.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q1" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q1" value="1"> I feel like this on some days.</label>
+            <label><input type="radio" name="q1" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q1" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I feel down and hopeless.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q2" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q2" value="1"> Some days.</label>
+            <label><input type="radio" name="q2" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q2" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I either have trouble falling asleep or sleep too much.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q3" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q3" value="1"> Some days.</label>
+            <label><input type="radio" name="q3" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q3" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I am tired all the time.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q4" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q4" value="1"> Some days.</label>
+            <label><input type="radio" name="q4" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q4" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I have poor appetite or eat too much.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q5" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q5" value="1"> Some days.</label>
+            <label><input type="radio" name="q5" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q5" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="col-6">
+
+        <div class="card">
+          <p>I feel like a failure.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q6" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q6" value="1"> Some days.</label>
+            <label><input type="radio" name="q6" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q6" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I can't concentrate.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q7" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q7" value="1"> Some days.</label>
+            <label><input type="radio" name="q7" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q7" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I have no energy to be social.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q8" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q8" value="1"> Some days.</label>
+            <label><input type="radio" name="q8" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q8" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I feel like a burden.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q9" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q9" value="1"> Some days.</label>
+            <label><input type="radio" name="q9" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q9" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>I mess up at work/school.</p>
+          <div class="card-item">
+            <label><input type="radio" name="q10" value="0" required> I don't feel like this.</label>
+            <label><input type="radio" name="q10" value="1"> Some days.</label>
+            <label><input type="radio" name="q10" value="2"> More than half the days.</label>
+            <label><input type="radio" name="q10" value="3"> Almost every day.</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <input class="button" type="submit" value="Submit Test">
+  </div>
+
+</form>
+
+</body>
+</html>
+

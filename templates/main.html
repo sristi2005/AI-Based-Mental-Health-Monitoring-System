@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mental Health Assessment</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #121c3b, #060b1a 70%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* GLASS HERO CONTAINER */
+    .win1 {
+      max-width: 1000px;
+      padding: 70px 60px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+    }
+
+    h1 {
+      font-size: 56px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: #bfc7ff;
+      margin-bottom: 35px;
+    }
+
+    .description {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #cfd6ff;
+      max-width: 800px;
+      margin: 0 auto 50px;
+    }
+
+    /* BUTTON – SAME AS TEST.HTML */
+    .button {
+      display: inline-block;
+      padding: 16px 52px;
+      background: linear-gradient(135deg, #6a6cff, #4f6cff);
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 32px;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+
+    .button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+    }
+
+    @media (max-width: 768px) {
+      .win1 {
+        padding: 50px 30px;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .description {
+        font-size: 15px;
+      }
+    }
+    /* REMOVE BOX BEHIND MAIN HEADING ONLY */
+    .hero-title {
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero-title">
+    <h1>Mental Health</h1>
+
+    <p class="tagline">
+      A smart and confidential mental health assessment platform
+    </p>
+
+    <p class="description">
+      This project is designed to help individuals better understand their
+      mental well-being using a simple, guided assessment.
+      By combining structured questionnaires with machine learning models,
+      we aim to provide early insights into stress and depression levels
+      in a safe, private, and user-friendly manner.
+      <br><br>
+      The goal is not diagnosis, but awareness — encouraging users to take
+      proactive steps toward mental wellness and seek professional support
+      when needed.
+    </p>
+
+    <a href="{{ url_for('contact') }}" class="button">
+      Fill Form
+    </a>
+  </div>
+
+</body>
+</html>
+
+
